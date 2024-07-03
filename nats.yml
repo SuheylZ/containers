@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  nats:
+    container_name: nats
+    image: nats:latest
+    ports:
+      - "4222:4222"   # NATS client port
+      - "8222:8222"   # NATS monitoring port
+    volumes:
+      - /var/data/nats:/data
+      - /var/data/nats:/config
+    command: [
+      "-js", 
+      "-c", "/config/nats-server.conf"
+    ]
