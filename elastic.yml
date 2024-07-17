@@ -19,8 +19,8 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
-    # networks:
-    #   - containers_default
+    networks:
+      - containers
     # healthcheck:
     #   test: ["CMD-SHELL", "curl -fsSL http://localhost:9200/_cluster/health || exit 1"]
     #   interval: 30s
@@ -45,6 +45,6 @@ services:
     # networks:
     #   - containers_default
 
-# networks:
-#   elastic:
-#     driver: bridge
+networks:
+  containers:
+    driver: bridge

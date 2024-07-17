@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    hostname: kafka
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    networks:
+      - containers
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_BROKER_ID: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - /var/data/kafka:/var/lib/kafka/data
+      - ./server.properties:/etc/kafka/server.properties
+    # depends_on:
+    #   - zookeeper
+    command:
+      - sh
+      - -c
+      - "/etc/confluent/docker/run"
+
+networks:
+  containers:
+    driver: bridge

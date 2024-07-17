@@ -1,4 +1,4 @@
-name: infrastructure
+version: '3.8'
 
 services:
   zookeeper:
@@ -6,6 +6,8 @@ services:
     container_name: zookeeper
     ports:
       - "2181:2181"
+    networks:
+      - containers
     environment:
       ZOO_PASSWORD: 'password#123'
     volumes:
@@ -17,3 +19,7 @@ services:
       - sh
       - -c
       - "cp /conf/zoo.cfg /conf/zoo.cfg.bak && cp /conf/zoo.cfg /zookeeper/conf/zoo.cfg && bin/zkServer.sh start-foreground"
+
+networks:
+  containers:
+    driver: bridge
