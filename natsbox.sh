@@ -2,5 +2,5 @@ docker run \
 -it \
 --name natsbox \
 --rm \
---network containers_containers \
+--network services \
 natsio/nats-box
