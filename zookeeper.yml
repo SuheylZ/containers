@@ -23,3 +23,4 @@ services:
 networks:
   containers:
     driver: bridge
+    name: services
