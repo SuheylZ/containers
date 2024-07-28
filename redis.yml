@@ -4,6 +4,8 @@ services:
   redis:
     image: redis:7.0.11
     container_name: redis
+    networks:
+      - containers
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     volumes:
       - /var/data/redis:/data
@@ -16,3 +18,8 @@ services:
 volumes:
   redis-data:
     driver: local
+
+networks:
+  containers:
+    driver: bridge
+    name: services

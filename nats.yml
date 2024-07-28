@@ -7,6 +7,8 @@ services:
     ports:
       - "4222:4222"   # NATS client port
       - "8222:8222"   # NATS monitoring port
+    networks:
+      - containers
     volumes:
       - /var/data/nats:/data
       - /var/data/nats:/config
@@ -14,3 +16,7 @@ services:
       "-js", 
       "-c", "/config/nats-server.conf"
     ]
+networks:
+  containers:
+    driver: bridge
+    name: services
