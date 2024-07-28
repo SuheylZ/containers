@@ -3,4 +3,5 @@ docker run \
 --name natsbox \
 --rm \
 --network containers_default \
-natsio/nats-box
+natsbox:1.1.1
+
