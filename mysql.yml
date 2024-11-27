@@ -2,8 +2,9 @@ version: '3.8'
 
 services:
   mysql:
-    image: mysql:latest
+    image: mysql:lts
     container_name: mysql
+    restart: always
     ports:
       - "3306:3306"
     networks:
@@ -11,14 +12,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password#123
       MYSQL_DATABASE: public
-      MYSQL_USER: suheyl
+      MYSQL_USER: admin
       MYSQL_PASSWORD: password#123
-#    volumes:
-#      - /var/data/mysql:/var/lib/mysql
+    volumes:
+     - /data/mysql:/var/lib/mysql
+    # command: [--ignore-db-dir=lost+found]
 
-volumes:
-  mysql_data:
-    driver: local
 networks:
   containers:
     driver: bridge

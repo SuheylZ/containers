@@ -12,7 +12,7 @@ services:
     environment:
       - SCYLLA_PASSWORD="password#123"
     volumes:
-      - /var/data/scylladb:/var/lib/scylla
+      - /data/scylladb:/var/lib/scylla
     command: [
       "--smp", "1",                     # Use a single CPU for simplicity
       "--memory", "2G",                 # Allocate 2GB of RAM

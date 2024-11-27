@@ -1,20 +1,22 @@
 version: '3.8'
-
 services:
   nats:
     container_name: nats
-    image: nats:latest
+    # image: nats:2.10.18-alpine
+    image: my-nats:0.1
+    restart: always
     ports:
       - "4222:4222"   # NATS client port
       - "8222:8222"   # NATS monitoring port
+      - "6222:6222"   # NATS clustering port
     networks:
       - containers
     volumes:
-      - /var/data/nats:/data
-      - /var/data/nats:/config
+      - /data/nats/data:/data:rw
     command: [
-      "-js", 
-      "-c", "/config/nats-server.conf"
+      '-js', 
+       '-c', 
+       '/etc/nats/nats-server.conf'
     ]
 networks:
   containers:

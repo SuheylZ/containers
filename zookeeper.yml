@@ -11,9 +11,9 @@ services:
     environment:
       ZOO_PASSWORD: 'password#123'
     volumes:
-      - '/var/data/zookeeper:/var/lib/zookeeper'
-      - '/var/data/zookeeper:/data'
-      - '/var/data/zookeeper:/logs'
+      - '/data/zookeeper:/var/lib/zookeeper'
+      - '/data/zookeeper:/data'
+      - '/data/zookeeper:/logs'
       - './zoo.cfg:/zookeeper/conf/zoo.cfg'
     command:
       - sh

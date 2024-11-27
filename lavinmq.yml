@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: cloudamqp/lavinmq:pr-821
+    container_name: lavinmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: password#123
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - /var/data/lavinmq:/tmp/amqp
+    restart: on-failure:3
+    networks:
+      - services
+
+networks:
+  services:
+    driver: bridge
+
