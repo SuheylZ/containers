@@ -1,4 +1,4 @@
-version: '3.8'
+
 services:
   nats:
     container_name: nats
@@ -10,15 +10,15 @@ services:
       - "8222:8222"   # NATS monitoring port
       - "6222:6222"   # NATS clustering port
     networks:
-      - containers
+      - services
     volumes:
-      - /data/nats/data:/data:rw
+      - /var/data/nats/data:/data:rw
     command: [
       '-js', 
        '-c', 
        '/etc/nats/nats-server.conf'
     ]
+
 networks:
-  containers:
-    driver: bridge
-    name: services
+  services:
+    external: true

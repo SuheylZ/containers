@@ -9,7 +9,7 @@ services:
       - "9092:9092"
       - "9093:9093"
     networks:
-      - containers
+      - services
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
@@ -26,6 +26,5 @@ services:
       - "/etc/confluent/docker/run"
 
 networks:
-  containers:
-    driver: bridge
-    name: services
+  services:
+    external: true

@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   scylla:
@@ -8,7 +7,7 @@ services:
       - "9042:9042"
       - "9160:9160"
     networks:
-      - containers
+      - services
     environment:
       - SCYLLA_PASSWORD="password#123"
     volumes:
@@ -21,6 +20,5 @@ services:
     ]
 
 networks:
-  containers:
-    driver: bridge
-    name: services
+  services:
+    external: true
