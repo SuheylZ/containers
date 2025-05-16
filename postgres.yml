@@ -15,7 +15,7 @@ services:
       - services
 
   pgadmin:
-    image: dpage/pgadmin4:8.14.0
+    image: dpage/pgadmin4:9.3.0
     container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: 'admin@postgres.com'
@@ -25,6 +25,8 @@ services:
     depends_on:
       - postgres
     restart: on-failure:3
+    volumes:
+      - /var/data/pgadmin:/var/lib/pgadmin
     networks:
       - services
 

@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    container_name: registry-ui
+    ports:
+      - "8080:80"
+    environment:
+      - REGISTRY_TITLE=My Private Registry
+      - REGISTRY_URL=http://dev-registry.tradeway.me:5000
+      - DELETE_IMAGES=true
+

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  registry:
+    image: registry:2.6
+    container_name: registry
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      # REGISTRY_HTTP_ADDR: :5000
+      # REGISTRY_HTTP_TLS_CERTIFICATE: /certs/docker.me.intern.crt
+      # REGISTRY_HTTP_TLS_KEY: /certs/docker.me.intern.key
+      REGISTRY_STORAGE: filesystem
+      REGISTRY_STORAGE_DELETE_ENABLED: 'true'
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
+
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: "Registry Realm"
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+      REGISTRY_AUTH_HTPASSWD_USERNAME: admin
+      REGISTRY_AUTH_HTPASSWD_PASSWORD: "password#123"
+    volumes:
+      - /var/data/registry/images:/var/lib/registry
+      - /var/data/registry/htpasswd:/auth/htpasswd
+    networks:
+      - services
+
+networks:
+  services:
+    external: true
+

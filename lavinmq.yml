@@ -1,7 +1,7 @@
 
 services:
   lavinmq:
-    image: cloudamqp/lavinmq:pr-821
+    image: cloudamqp/lavinmq:pr-1102
     container_name: lavinmq
     environment:
       RABBITMQ_DEFAULT_USER: admin
