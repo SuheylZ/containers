@@ -28,7 +28,7 @@ services:
       - "8001:80"
     depends_on:
       - postgres
-    restart: on-failure:3
+    restart: always
     volumes:
       - /var/data/pgadmin:/var/lib/pgadmin
     networks:
