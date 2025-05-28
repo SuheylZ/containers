@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  pg_upgrade:
+    image: tianon/postgres-upgrade:15-to-17
+    container_name: pg_upgrade
+    volumes:
+      - /var/data/pg15/postgres:/var/lib/postgresql/15/data       # PG 15 actual data dir
+      - /var/data/pg17:/var/lib/postgresql/17/data                # New PG 17 data dir
+      - /var/data/pgupgrade:/var/lib/postgresql/upgrade           # Optional log/output dir
+    environment:
+      POSTGRES_INITDB_ARGS: "--locale=C"
+    tty: true
+    stdin_open: true
