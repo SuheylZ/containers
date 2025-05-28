@@ -1,6 +1,7 @@
 
 services:
   postgres:
+    image: fs-postgres:17.5
     build:
       context: .
       dockerfile: Dockerfile.postgres
